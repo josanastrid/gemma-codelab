@@ -11,6 +11,6 @@ void setup() {
 }
 
 void loop() {
-    pixels.setPixelColor(0, pixels.Color(255,255,255));
+    pixels.setPixelColor(0, pixels.Color(254,80,0));
     pixels.show();
 }
