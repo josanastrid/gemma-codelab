@@ -16,12 +16,29 @@ void setup() {
 
 uint32_t orange = pixels.Color(254,80,0);
 uint32_t red = pixels.Color(255,0,0);
-uint32_t color = orange;
+uint32_t oddColor = orange;
+uint32_t evenColor = red;
+int changeColor = 0;
 
 void loop() {
 
+  if (brightness == 0) {
+    if( changeColor%2 ){
+      oddColor = orange;
+      evenColor = red;
+    }else{
+      oddColor = red;
+      evenColor = orange;
+    }
+    changeColor++;
+  }
+
   for(int i=0; i< NUM_OF_PIXELS; i++){
-    pixels.setPixelColor(i, color);
+    if( i%2 ){
+      pixels.setPixelColor(i, oddColor);
+    }else{
+      pixels.setPixelColor(i, evenColor);
+    }
   }
   
   pixels.setBrightness(brightness);
@@ -31,14 +48,6 @@ void loop() {
 
   if (brightness == 0 || brightness == 255) {
     fadeAmount = -fadeAmount;   
-  }
-
-  if (brightness == 0 ){
-    if( color == red ){
-      color = orange;
-    }else{
-      color = red;
-    }
   }
 
   delay(30);
