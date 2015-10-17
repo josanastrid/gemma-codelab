@@ -14,16 +14,28 @@ void setup() {
   pixels.show();
 }
 
-void loop() {
+uint32_t orange = pixels.Color(254,80,0);
+uint32_t red = pixels.Color(255,0,0);
+uint32_t color = orange;
 
-  pixels.setPixelColor(0, pixels.Color(254,80,0));
+void loop() {
+   
+  pixels.setPixelColor(0, color);
   pixels.setBrightness(brightness);
   pixels.show();
 
   brightness = brightness + fadeAmount;
 
   if (brightness == 0 || brightness == 255) {
-    fadeAmount = -fadeAmount;
+    fadeAmount = -fadeAmount;   
+  }
+
+  if (brightness == 0 ){
+    if( color == red ){
+      color = orange;
+    }else{
+      color = red;
+    }
   }
 
   delay(30);
